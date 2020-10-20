@@ -1,11 +1,10 @@
-pragma solidity ^0.5.10;
+pragma solidity >=0.4.22 <0.7.0;
+
 
 contract Pecem {
     string public nome_propriedade;
     string public mensagem;
     uint public teste;
-    string public contrato;
-    string public proposta; 
     address public dono_contrato;
 
     struct Registro {
@@ -40,7 +39,7 @@ contract Pecem {
     constructor(string memory mensagemInicial, string memory nomeInicial) public {
         mensagem = mensagemInicial;
         nome_propriedade = nomeInicial;
-        teste = 10;
+        dono_contrato = msg.sender;
     }
 
     function atualizaMensagem(string memory novaMensagem) public {
@@ -59,20 +58,6 @@ contract Pecem {
     function getNomePropriedade() public view returns(string memory ret) {
         //const bytes32 varConv = nome_propriedade;
         return nome_propriedade;
-    }
-
-    function getTeste() public view returns(uint) {
-        //const bytes32 varConv = mensagem;
-        return teste;
-    }
-
-    function setTest(uint valor) public {
-        //const bytes32 varConv = nome_propriedade;
-        teste = valor;
-    }
-
-    function retornoFixo() public pure returns (string memory status){
-        return "Meu texto fixo";
     }
 
     function insereNota(string memory _fornecedor, string memory _item, string memory _data, string memory _texto) public returns (uint){
