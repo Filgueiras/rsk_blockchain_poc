@@ -1,10 +1,9 @@
 pragma solidity >=0.4.22 <0.7.0;
-
+pragma experimental ABIEncoderV2;
 
 contract Pecem {
     string public nome_propriedade;
     string public mensagem;
-    uint public teste;
     address public dono_contrato;
 
     struct Registro {
@@ -90,5 +89,17 @@ contract Pecem {
 
     function _inativarNota(uint id_nota) private{
         notas[id_nota].ativo = false;
+    }
+    
+    function getNotas() view public returns(NotaFiscal[] memory) {
+        return notas;
+    }
+    
+    function getRegistros() view public returns(Registro[] memory) {
+        return registros;
+    }
+    
+    function getPropostas() view public returns(Proposta[] memory) {
+        return propostas;
     }
 }
